@@ -36,10 +36,7 @@ cat=['Gender','Married','Dependents','Education','Self_Employed','Credit_History
 for var in cat:
     le = preprocessing.LabelEncoder()
     df[var]=le.fit_transform(df[var].astype('str'))
-    
 
-# Perform log transformation of TotalIncome to make it closer to normal
-df['LoanAmount_log'] = np.log(df['LoanAmount'])
 
 y=df['Loan_Status']
 df=df.drop(['Loan_Status','Loan_ID'],axis=1)
@@ -51,36 +48,36 @@ def train(model,X_train,X_test,y_train,y_test,model_name):
     predicted= model.predict(X_test)
     accuracy = metrics.accuracy_score(predicted,y_test)
     print ("Accuracy : %s" % "{0:.3%}".format(accuracy))
-    filename = model_name
+    filename = model_name+'.pkl'
     pickle.dump(model, open(filename, 'wb'))
     
 start = time.time()
 model = LogisticRegression()
-train(model,X_train,X_test,y_train,y_test,'Logistic Regression')
+train(model,X_train,X_test,y_train,y_test,'Logistic_Regression')
 end = time.time()
 print(end - start,"s Time for Logisitic Regression")
     
 start = time.time()
 model = GaussianNB()
-train(model,X_train,X_test,y_train,y_test,'Gaussian Naive Bayes')
+train(model,X_train,X_test,y_train,y_test,'Gaussian_Naive_Bayes')
 end = time.time()
 print(end - start,"s Time for GNB")
 
 start = time.time()
 model = RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1)
-train(model,X_train,X_test,y_train,y_test,'Random Forest')
+train(model,X_train,X_test,y_train,y_test,'Random_Forest')
 end = time.time()
 print(end - start,"s Time for Random Forest")
 
 start = time.time()
 model =  DecisionTreeClassifier(max_depth=5)
-train(model,X_train,X_test,y_train,y_test,'Decision Tree Classifier')
+train(model,X_train,X_test,y_train,y_test,'Decision_Tree_Classifier')
 end = time.time()
 print(end - start,"s Time for Decision Tree")
 
 start = time.time()
 model = SVC(kernel="linear", C=0.025)
-train(model,X_train,X_test,y_train,y_test,'SVC Linear')
+train(model,X_train,X_test,y_train,y_test,'SVC_Linear')
 end = time.time()
 print(end - start,"s Time for SVC")
 
@@ -93,7 +90,7 @@ print(end - start,"s Time for KNN")
     
 start = time.time()
 model = MLPClassifier(alpha=1, max_iter=1000)
-train(model,X_train,X_test,y_train,y_test,'Multi Layer Perceptron')
+train(model,X_train,X_test,y_train,y_test,'Multi_Layer_Perceptron')
 end = time.time()
 print(end - start,"s Time for MLP")
 

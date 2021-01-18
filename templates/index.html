@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Bank Loan Risk Prediction System</title>
+
+</head>
+<body>
+ <div class="container">
+     <div class="row">
+         <div class="col-md-3"></div>
+         <div class="col-md-6" id="template" style="margin-top: 100px; margin-bottom: 200px">
+             <div class="login">
+                 <h1 style="margin-bottom: 50px; margin-top: 30px">Risk Prediction</h1>
+             </div>
+             <form action="{{ url_for('predict')}}"method="post">
+                <p>Please select your gender:</p>
+                <input type="radio" id="male" name="gender" value="1">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="0">
+                <label for="female">Female</label><br>
+                <br>  
+                <p>Please select your Marital Status:</p>
+                <input type="radio" id="age1" name="married1" value="1">
+                <label for="age1">Yes</label><br>
+                <input type="radio" id="age2" name="married2" value="0">
+                <label for="age2">No</label><br>  
+                <br>
+                <p>Please select your number of Dependents:</p>
+                <input type="radio" id="male" name="dependent1" value="0">
+                <label for="male">Zero</label><br>
+                <input type="radio" id="male" name="dependent2" value="1">
+                <label for="male">One</label><br>
+                <input type="radio" id="female" name="dependent3" value="2">
+                <label for="female">Two</label><br>
+                <input type="radio" id="male" name="dependent4" value="3">
+                <label for="male">More</label><br>
+                <br>  
+                <p>Please select your Education Status:</p>
+                <input type="radio" id="age1" name="edu1" value="1">
+                <label for="age1">Graduate</label><br>
+                <input type="radio" id="age2" name="edu2" value="0">
+                <label for="age2">Non Graduate</label><br>  
+                <br>
+                <p>Please select your Status:</p>
+                <input type="radio" id="age1" name="status1" value="1">
+                <label for="age1">Self Employed</label><br>
+                <input type="radio" id="age2" name="status2" value="0">
+                <label for="age2">Not Self Employed</label><br>  
+                <br>
+                <input type="number" id="applicationincome" name="appincome">
+                <label for="applicationincome">application-Income</label><br>
+                <br>
+                <input type="number" id="coapplicationincome" name="coappincome">
+                <label for="coapplicationincome">coapplication-Income</label><br>
+                <br>
+                <input type="number" id="applicationincome" name="loanamount">
+                <label for="applicationincome">Loan Amount</label><br>
+                <br>
+                <input type="number" id="coapplicationincome" name="loanamountterm">
+                <label for="coapplicationincome">Loan Amount Term</label><br>
+                <br>
+                <input type="number" id="applicationincome" name="credit history">
+                <label for="applicationincome">Credit History</label><br>
+                <br>
+                <p>Please select your Property Area:</p>
+                <input type="radio" id="male" name="prop1" value="0">
+                <label for="male">Urban</label><br>
+                <input type="radio" id="male" name="prop2" value="1">
+                <label for="male">Semi Urban</label><br>
+                <input type="radio" id="female" name="prop3" value="2">
+                <label for="female">Rural</label><br>
+                
+                <br>
+                <p style="text-align: center">{{ prediction_text }}</p>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form>
+         </div>
+     </div>
+ </div>
+</body>
+</html>
