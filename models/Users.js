@@ -20,7 +20,8 @@ const Userscheme = new moongoose.Schema({
     }
 });
 
-UserSchema.pre('save',function(next){
+// Hashing the password
+Userscheme.pre('save',function(next){
     if(!this.isModified('password'))
         return next();
     bcrypt.hash(this.password,10,(err,passwordHash)=>{
@@ -31,7 +32,9 @@ UserSchema.pre('save',function(next){
     });
 });
 
-UserSchema.methods.comparePassword = function(password,cb){
+
+// Authentication via password matching through bcrypt
+Userscheme.methods.comparePassword = function(password,cb){
     bcrypt.compare(password,this.password,(err,isMatch)=>{
         if(err)
             return cb(err);

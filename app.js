@@ -7,8 +7,6 @@ const cookieParser=require('cookie-parser');
 const app=new express();
 const bodyParser = require("body-parser");
 
-
-
 app.use(cookieParser());
 
 // Middleware Body Parser    
@@ -29,6 +27,10 @@ const db = process.env.mongouri;
 mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to the db."))
     .catch(err => console.log('asa', err));
+
+
+// Setting up a route
+app.use('/user', require('./routes/user'));
 
 
 const PORT = process.env.PORT;
