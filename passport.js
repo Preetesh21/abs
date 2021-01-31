@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy;
-const User = require('../models/Users');
+const User = require('./models/User');
 
 const cookieExtractor = req =>{
     let token = null;
@@ -26,13 +26,9 @@ passport.use(new JwtStrategy({
     });
 }));
 
-// authenticated local strategy using name and password
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-  },
-  (username,password,done)=>{
-    User.findOne({email:username},(err,user)=>{
+// authenticated local strategy using username and password
+passport.use(new LocalStrategy((username,password,done)=>{
+    User.findOne({username},(err,user)=>{
         // something went wrong with database
         if(err)
             return done(err);

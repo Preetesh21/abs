@@ -1,32 +1,25 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const Userscheme = new moongoose.Schema({
-    name: {
-        type: String,
-        required: true
+const UserSchema = new mongoose.Schema({
+    username :{
+        type : String,
+        required : true,
+        min : 6,
+        max : 15
     },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+    password : {
+        type : String,
+        required : true
     },
     role : {
         type : String,
         enum : ['user','admin'],
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now()
-    }
 });
 
-// Hashing the password
-Userscheme.pre('save',function(next){
+UserSchema.pre('save',function(next){
     if(!this.isModified('password'))
         return next();
     bcrypt.hash(this.password,10,(err,passwordHash)=>{
@@ -37,9 +30,7 @@ Userscheme.pre('save',function(next){
     });
 });
 
-
-// Authentication via password matching through bcrypt
-Userscheme.methods.comparePassword = function(password,cb){
+UserSchema.methods.comparePassword = function(password,cb){
     bcrypt.compare(password,this.password,(err,isMatch)=>{
         if(err)
             return cb(err);
@@ -51,7 +42,4 @@ Userscheme.methods.comparePassword = function(password,cb){
     });
 }
 
-
-const User = moongoose.model('User', Userscheme);
-
-module.exports = User;
+module.exports = mongoose.model('User',UserSchema);
