@@ -1,5 +1,5 @@
 {
-  "name": "MernJWT",
+  "name": "abs",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,7 +9,7 @@
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Preetesh",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.7",

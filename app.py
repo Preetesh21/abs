@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-model = pickle.load(open('models/Logistic_Regression.pkl', 'rb'))
+model = pickle.load(open('model/Logistic_Regression.pkl', 'rb'))
 
 @app.route('/')
 def home():

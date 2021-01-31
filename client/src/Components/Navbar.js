@@ -47,7 +47,7 @@ const Navbar = props =>{
                 </Link> 
                 <Link to="/todos">
                     <li className="nav-item nav-link">
-                        Todos
+                        Loans
                     </li>
                 </Link> 
                 {
