@@ -26,7 +26,11 @@ def predict():
     print(int_features)
     prediction = model.predict(int_features)
     print(prediction,prediction[0])
-    return(jsonify(predict=int(prediction[0])))
+    if(prediction[0]==0):
+        mssg="Sadly Not Granted!!!"
+    else:
+        mssg="Congrats u r passed!!!"
+    return(jsonify(predict=int(prediction[0]),message=mssg))
 
 @app.route('/api/', methods=['POST', 'GET'])
 def api_post():

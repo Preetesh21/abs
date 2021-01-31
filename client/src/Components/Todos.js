@@ -1,6 +1,5 @@
 import React, {useState,useContext,useEffect} from 'react';
-import Message from './Message';
-import { AuthContext } from '../Context/AuthContext';
+//import Message from './Message';
 
 function Todos() {
     const [value, setValue] = useState('');
@@ -14,8 +13,9 @@ function Todos() {
     const [value9,setValue9]=useState('');
     const [value10, setValue10] = useState('');
     const [value11,setValue11]=useState('');
+    const [message,setMessage] = useState(null);
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       const data = { 
         gender: value,
@@ -32,7 +32,7 @@ function Todos() {
      };
       console.log('submit');
       console.log(data);
-      fetch('http://127.0.0.1:8000/predict', {
+      const ans=await fetch('http://127.0.0.1:8000/predict', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -40,7 +40,11 @@ function Todos() {
         body: JSON.stringify(data),
       })
         .then(res => res.json())
-        .then(res => console.log(res));
+        .then(res => {console.log(res)
+            const { message } = res;
+            setMessage(message);
+            console.log(message);
+        });
     }
   
     function handleValue(e) {
@@ -76,6 +80,24 @@ function Todos() {
     function handleValue11(e) {
         setValue11(e.target.value);
     }
+    const getStyle = (props)=>{
+        let baseClass = "alert ";
+        if(props.message.msgError)
+            baseClass = baseClass + "alert-danger";
+        else
+            baseClass = baseClass + "alert-primary";
+        return baseClass + " text-center";
+    }
+    
+    const Message = props=>{
+        return(
+            <div className={getStyle(props)} role="alert">
+                {props.message}
+            </div>
+        )
+    }
+
+
     return (
       <section id="app">
         <form action="" onSubmit={handleSubmit}>
@@ -148,9 +170,10 @@ function Todos() {
                 <input className="form-check-input" type="radio" id="male" onChange={handleValue11} name="prop" value="1"/>
                 <label className="form-check-label" htmlFor="female">Rural</label>
                 <input className="form-check-input" type="radio" id="female" onChange={handleValue11} name="prop" value="2"/>
-</div>
+                </div>
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
             </form>
+            {message ? <Message message={message}/> : <p>null</p>}
         
       </section>
     );

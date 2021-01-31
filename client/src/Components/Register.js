@@ -35,8 +35,6 @@ const Register = props=>{
         });
     }
 
-
-
     return(
         <div>
             <form onSubmit={onSubmit}>
