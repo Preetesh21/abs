@@ -28,5 +28,13 @@ def predict():
     print(prediction,prediction[0])
     return(jsonify(predict=int(prediction[0])))
 
+@app.route('/api/', methods=['POST', 'GET'])
+def api_post():
+    if request.method == 'POST':
+        print('post app')
+        req = request.json
+        print(req)
+        return jsonify(name='john')
+
 if __name__ == '__main__':
    app.run(host="localhost", port=8000,debug = True)
