@@ -61,11 +61,11 @@ userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(
 
 userRouter.get('/loans',passport.authenticate('jwt',{session : false}),(req,res)=>{
     if(req.user.role === 'admin'){
-    User.findById({_id : req.user._id}).populate('todos').exec((err,document)=>{
+    Loan.find({},(err,loan)=>{
         if(err)
             res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
         else{
-            res.status(200).json({todos : document.todos, authenticated : true});
+            res.status(200).json({loan : loan});
         }
     });
 }
