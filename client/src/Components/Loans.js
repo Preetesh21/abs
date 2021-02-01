@@ -1,4 +1,4 @@
-import React, {useState,useContext,useEffect} from 'react';
+import React, {useState} from 'react';
 import LoanService from '../Services/LoanService';
 
 function Todos() {
@@ -92,7 +92,6 @@ function Todos() {
             baseClass = baseClass + "alert-primary";
         return baseClass + " text-center";
     }
-    
     const Message = props=>{
         return(
             <div className={getStyle(props)} role="alert">
@@ -100,7 +99,6 @@ function Todos() {
             </div>
         )
     }
-
     return (
       <section id="app">
         <form action="" onSubmit={handleSubmit}>
@@ -148,8 +146,7 @@ function Todos() {
                 <label className="form-check-label" htmlFor="age2">Not Self Employed</label>
                 <input className="form-check-input" type="radio" onChange={handleValue5} id="age2" name="status" value="0"/>
                 </div>
-
-                
+  
                 <label htmlFor="applicationincome">application-Income</label>
                 <input className="form-control" type="number" onChange={handleValue6} id="applicationincome" name="appincome"/>
                 

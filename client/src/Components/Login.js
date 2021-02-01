@@ -11,7 +11,6 @@ const Login = props=>{
     const onChange = e =>{
         setUser({...user,[e.target.name] : e.target.value});
     }
-
     const onSubmit = e =>{
         e.preventDefault();
         AuthService.login(user).then(data=>{
@@ -20,15 +19,12 @@ const Login = props=>{
             if(isAuthenticated){
                 authContext.setUser(user);
                 authContext.setIsAuthenticated(isAuthenticated);
-                props.history.push('/todos');
+                props.history.push('/loans');
             }
             else
                 setMessage(message);
         });
     }
-
-
-
     return(
         <div>
             <form onSubmit={onSubmit}>
@@ -52,5 +48,4 @@ const Login = props=>{
         </div>
     )
 }
-
 export default Login;

@@ -1,9 +1,8 @@
-import React, {useState,useContext,useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
 import LoanService from '../Services/LoanService';
 
 function Admin() {
     const [loans,setLoans] = useState([]);
-     
     useEffect(()=>{
         LoanService.getLoans().then(data =>{
             setLoans(data.loan);
@@ -12,8 +11,7 @@ function Admin() {
 
     return (
         <div>
-            
-            <table className="table table-dark table-striped text-center">
+        <table className="table table-dark table-striped text-center">
         <thead>
           <tr>
             <th>Gender</th>
@@ -48,11 +46,8 @@ function Admin() {
             </tr>
           ))}
         </tbody>
-      </table>
-
-
+        </table>
         </div>
     )
 }
-
 export default Admin
