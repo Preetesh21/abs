@@ -4,7 +4,7 @@ const passport = require('passport');
 const passportConfig = require('../passport');
 const JWT = require('jsonwebtoken');
 const User = require('../models/User');
-
+const Loan =require('../models/Loan');
 
 const signToken = userID =>{
     return JWT.sign({
@@ -59,6 +59,30 @@ userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(
     res.status(200).json({isAuthenticated : true, user : {username,role}});
 });
 
+userRouter.get('/loans',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    if(req.user.role === 'admin'){
+    User.findById({_id : req.user._id}).populate('todos').exec((err,document)=>{
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            res.status(200).json({todos : document.todos, authenticated : true});
+        }
+    });
+}
+else{
+    res.status(200).json({message : {msgBody : 'You are an admin', msgError : false}});
+}
+});
 
+userRouter.post('/loans',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    const loan = new Loan(req.body);
+    loan.save(err=>{
+        if(err)
+            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else{
+            res.status(200).json({message : {msgBody : "Successfully created Loan item in Database", msgError : false}});
+        }
+    })
+});
 
 module.exports = userRouter;

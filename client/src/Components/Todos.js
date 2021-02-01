@@ -1,5 +1,5 @@
 import React, {useState,useContext,useEffect} from 'react';
-//import Message from './Message';
+import LoanService from '../Services/LoanService';
 
 function Todos() {
     const [value, setValue] = useState('');
@@ -41,9 +41,13 @@ function Todos() {
       })
         .then(res => res.json())
         .then(res => {console.log(res)
-            const { message } = res;
+            const { message,predict } = res;
             setMessage(message);
+            data.predict=predict;
             console.log(message);
+        });
+        LoanService.postLoan(data).then(data =>{
+            console.log(data)
         });
     }
   
@@ -96,7 +100,6 @@ function Todos() {
             </div>
         )
     }
-
 
     return (
       <section id="app">
