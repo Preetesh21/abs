@@ -65,7 +65,7 @@ const Navbar = props =>{
         )
     }
     return(
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to="/">
                 <div className="navbar-brand">ABS</div>
             </Link>
