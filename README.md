@@ -68,10 +68,116 @@ python app.py
 - Visit "http://localhost:3000" on your browser
 - Now you are all set to start!
 
-
 ## Database Models Used
 
+There are two models defined for storing data
+
+1.User model
+
+```
+username :{
+        type : String,
+        required : true,
+        min : 6,
+        max : 15
+    },
+    password : {
+        type : String,
+        required : true
+    },
+    role : {
+        type : String,
+        enum : ['user','admin'],
+        required: true
+    },
+```
+
+2.Bank Form Details Model
+
+```
+gender : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    marital : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    dependents : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    education : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    status : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    appincome : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    coapincome : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    loan : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    loanterm : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    credit : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    property : {
+        type : Number,
+        default:0,
+        required : true
+    },
+    predict:{
+        type:Number,
+        default:0,
+        required: true
+    }
+```
 ## Machine Learning Model
+
+For the machine learning part several models were tried including Decision Tree,SVM and K-Means.The best result came through Logistic Regression.The data used here is taken from kaggle and comprises of only two categories with the distribution as 65% and 35% which makes the minimum accuracy to be 65% for a model to be considered for evaluation.
+The data composed of deatils such as:
+
+```
+['Gender','Married','Dependents','Education','Self_Employed','Credit_History','Property_Area','Loan_Status']
+```
+
+Sklearn package was used for machine learning.
+Data cleaning was done prior to fitting the data to the model.
+
+| Model       | Accuracy    | Time              |
+| ------------- |:-------------:|:---------------:|
+|Logisitic Regression|80.803%|0.7364733219146729 s |
+|GNB| 79.803%|0.015659332275390625 s|  
+|Random Forest| 74.384%|0.06247997283935547 s  |
+| Decision Tree|75.369%|0.015588045120239258 s|
+|SVC|65.517%|47.450788736343384 s|
+|KNN| 60.099%|0.1722092628479004 s|
+|MLP| 53.695%|0.48421430587768555 s|
+|AdaBoost|79.310%|0.1476762294769287 s|
 
 ## Workflow
 
