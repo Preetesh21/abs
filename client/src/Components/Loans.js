@@ -31,8 +31,6 @@ function Todos() {
         credit:value10,
         property:value11,
      };
-      console.log('submit');
-      console.log(data);
       const ans=await fetch('http://127.0.0.1:8000/predict', {
         method: 'POST',
         headers: {
@@ -45,10 +43,8 @@ function Todos() {
             const { message,predict } = res;
             setMessage(message);
             data.predict=predict;
-            console.log(message);
         });
         LoanService.postLoan(data).then(data =>{
-            console.log(data);
         });
     }
 
@@ -100,21 +96,8 @@ function Todos() {
             </div>
         )
     }
-    const config = {
-      angle: "342",
-      spread: 360,
-      startVelocity: "30",
-      elementCount: "183",
-      dragFriction: "0.09",
-      duration: "4020",
-      stagger: 3,
-      width: "10px",
-      height: "10px",
-      perspective: "500px",
-      colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-    };
     const button = document.querySelector(".example")
-    if(message){
+    if(message==="Congrats u r passed!!!"){
       confetti(button,{
         angle: "342",
         spread: 360,
@@ -130,71 +113,71 @@ function Todos() {
       })
     }
     return (
-      <section id="app">
-      <h1 className="example text-center">Loan Prediction Form</h1>
+      <section id="app" className="container">
+      <h1 className=" text-center example ">Loan Prediction Form</h1>
         <form action="" onSubmit={handleSubmit}>
 
                 <p>Please select your gender:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue} name="gender" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Male</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Male</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue} name="gender" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Female</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Female</label>
                 </div>
 
                 <p>Please select your Marital Status:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue2} name="married" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Yes</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Yes</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue2} name="married" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">No</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">No</label>
                 </div>
 
                 <p>Please select your number of Dependents:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue3} name="dependent" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">None</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">None</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue3} name="dependent" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">One</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">One</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue3} name="dependent" value="2" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Two</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Two</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue3} name="dependent" value="3" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">More</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">More</label>
                 </div>
 
                 <p>Please select your Education Status:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue4} name="edu" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Graduate</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Graduate</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue4} name="edu" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Non Graduate</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Non Graduate</label>
                 </div>
                 <p>Please select your Status:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue5} name="status" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Self Employed</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Self Employed</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue5} name="status" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Not Self Employed</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Not Self Employed</label>
                 </div>
-  
-                <label htmlFor="applicationincome">application-Income</label>
+  <br></br>
+                <label htmlFor="applicationincome">Application-Income</label>
                 <input className="form-control" type="number" onChange={handleValue6} id="applicationincome" name="appincome"/>
                 
-                <label htmlFor="coapplicationincome">coapplication-Income</label>
+                <label htmlFor="coapplicationincome">Co-Application-Income</label>
                 <input className="form-control" type="number" onChange={handleValue7} id="coapplicationincome" name="coappincome"/>
                 
                 <label htmlFor="applicationincome">Loan Amount</label>
@@ -209,15 +192,15 @@ function Todos() {
                 <p>Please select your Property Area:</p>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue11} name="prop" value="0" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Urban</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Urban</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue11} name="prop" value="1" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Semi Urban</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Semi Urban</label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" onChange={handleValue11} name="prop" value="2" id="exampleRadios1" />
-                  <label className="form-check-label" for="exampleRadios1">Rural</label>
+                  <label className="form-check-label" htmlFor="exampleRadios1">Rural</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
             </form>

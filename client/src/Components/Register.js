@@ -36,30 +36,15 @@ const Register = props=>{
     }
 
     return(
-        <div>
+        <div className="container">
             <form onSubmit={onSubmit}>
-                <h3>Please Register</h3>
+                <h3 className="text-center">Please Register</h3>
                 <label htmlFor="username" className="sr-only">Username: </label>
-                <input type="text" 
-                       name="username" 
-                       value={user.username}
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Username"/>
+                <input type="text" name="username" value={user.username} onChange={onChange} className="form-control" placeholder="Enter Username"/><br></br>
                 <label htmlFor="password" className="sr-only">Password: </label>
-                <input type="password" 
-                       name="password"
-                       value={user.password} 
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter Password"/>
+                <input type="password" name="password" value={user.password} onChange={onChange} className="form-control" placeholder="Enter Password"/><br></br>
                 <label htmlFor="role" className="sr-only">Role: </label>
-                <input type="text" 
-                       name="role"
-                       value={user.role}  
-                       onChange={onChange} 
-                       className="form-control" 
-                       placeholder="Enter role (admin/user)"/>
+                <input type="text" name="role" value={user.role}  onChange={onChange} className="form-control" placeholder="Enter role (admin/user)"/><br></br>
                 <button className="btn btn-lg btn-primary btn-block" 
                         type="submit">Register</button>
             </form>

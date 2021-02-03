@@ -10,7 +10,7 @@ function Admin() {
     },[]);
 
     return (
-        <div>
+        <div className="container">
         <h1 className="text-center">All the Data</h1>
         <table className="table table-dark table-striped text-center">
         <thead>
