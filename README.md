@@ -181,7 +181,9 @@ Data cleaning was done prior to fitting the data to the model.
 
 ## Workflow
 
-
+So the app workflow is as follows:
+First the user needs to register himself(either as an admin or a regular user) and then using those credentials he needs to log in which would lead him to the main page which contains the form details for the loan. Now after filling the details he would be informed whether his credentials land him a loan or not.
+If the user is an admin then he has an additional capability to view all the form details filled uptill now.
 
 ## Directory Structre
 
